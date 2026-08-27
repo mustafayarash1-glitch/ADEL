@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: "ADEL",
   description: "سیستم مدیریت رستورانت و شیرینی‌سرای عادل"
