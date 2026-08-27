@@ -1,0 +1,44 @@
+name: ADEL Codex
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  codex:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout ADEL
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+
+      - name: Run Codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          permission-profile: ":workspace"
+          safety-strategy: drop-sudo
+          prompt: |
+            You are working on the ADEL software.
+
+            Repository:
+            mustafayarash1-glitch/ADEL
+
+            Your task:
+            - Inspect the existing ADEL code before making changes.
+            - Improve the software only when required.
+            - Preserve existing working features.
+            - Use the existing architecture where practical.
+            - Connect the application to the existing ADEL database when required.
+            - Run non-destructive validation after changes.
+            - Do not expose secrets, API keys, passwords, or tokens.
+            - Do not delete user data.
+            - Do not make destructive database changes.
+            - Do not change authentication or security settings without a clear need.
+            - Use Persian terminology appropriate for ADEL.
+            - Use "طلبکار" instead of "بستانکار".
